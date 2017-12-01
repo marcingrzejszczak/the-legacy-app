@@ -3,6 +3,7 @@ package com.example.legacyapp.services;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.Gson;
 import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
 import com.stripe.exception.APIException;
@@ -19,14 +20,14 @@ import org.springframework.stereotype.Service;
  * @author Marcin Grzejszczak
  */
 @Service
-public class CustomerRentalHistoryManagerImpl {
+public class CustomerRentalHistoryManagerImpl implements CustomerRentalHistoryManager {
 
-	public ChargeCollection listAllCharges() {
+	public String listAllCharges() {
 		Stripe.apiKey = "sk_test_BQokikJOvBiI2HlWgH4olfQ2";
 		Map<String, Object> chargeParams = new HashMap<>();
 		chargeParams.put("limit", 3);
 		try {
-			return Charge.list(chargeParams);
+			return new Gson().toJson(Charge.list(chargeParams));
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
