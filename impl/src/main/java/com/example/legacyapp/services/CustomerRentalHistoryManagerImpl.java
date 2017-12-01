@@ -25,7 +25,7 @@ import org.springframework.util.StringUtils;
 @Service
 public class CustomerRentalHistoryManagerImpl implements CustomerRentalHistoryManager {
 
-	@Value("${stripe.url:}") String url;
+	@Value("${api.url:}") String url;
 
 	@Override
 	public Charges listAllCharges() {

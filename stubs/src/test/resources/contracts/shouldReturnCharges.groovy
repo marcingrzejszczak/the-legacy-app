@@ -14,6 +14,7 @@ Contract.make {
 	}
 	response {
 		status 200
-		body(file("charges.json"))
+		body($(consumer(file("charges.json")),
+				producer(execute('assertResponse($it)'))))
 	}
 }

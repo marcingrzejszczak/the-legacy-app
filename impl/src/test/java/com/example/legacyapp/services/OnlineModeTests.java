@@ -2,15 +2,15 @@ package com.example.legacyapp.services;
 
 import com.example.legacyapp.TheLegacyApp;
 import com.example.legacyapp.dto.Charges;
-import com.example.legacyapp.services.CustomerRentalHistoryManager;
 import org.assertj.core.api.BDDAssertions;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
@@ -21,22 +21,18 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TheLegacyApp.class,
-		properties = "api.url=http://localhost:8765",
 		webEnvironment = NONE)
 @AutoConfigureStubRunner(
-		ids = "com.example:the-legacy-app-stubs:+:stubs:8765"
-		// in Intellij you have to use workOffline
-		,		workOffline = true
+		ids = "com.example.github:github-webhook:+:stubs:7654",
+		repositoryRoot = "http://repo.spring.io/libs-milestone-local"
 )
-public class CustomerWithStubRunnerTests {
-
-	@Autowired CustomerRentalHistoryManager manager;
+public class OnlineModeTests {
 
 	@Test
 	public void should_return_charge_collection() {
-		Charges charges = manager.listAllCharges();
+		String object = new RestTemplate()
+				.getForObject("http://localhost:7654/", String.class);
 
-		BDDAssertions.then(charges.getCharges())
-				.hasSize(25);
+		BDDAssertions.then(object).contains("dsyer");
 	}
 }

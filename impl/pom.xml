@@ -73,10 +73,23 @@
 			<classifier>stubs</classifier>
 			<scope>test</scope>
 		</dependency>
+		<!-- We're adding the sc-contract plugin -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
+	<!-- We're adding the sc-contract plugin -->
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
+				<version>1.2.1.RELEASE</version>
+				<extensions>true</extensions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

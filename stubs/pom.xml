@@ -22,7 +22,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<!-- We don't want to run the generated tests -->
-		<skipTests>true</skipTests>
+		<!--<skipTests>true</skipTests>-->
 	</properties>
 
 	<dependencies>
@@ -30,6 +30,10 @@
 			<groupId>com.example</groupId>
 			<artifactId>the-legacy-app-api</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- We're adding the sc-contract plugin so as to create a stubbed response -->
 		<dependency>
@@ -46,6 +50,18 @@
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<version>1.2.1.RELEASE</version>
 				<extensions>true</extensions>
+				<configuration>
+					<testMode>EXPLICIT</testMode>
+					<baseClassForTests>com.example.contracts.BaseClass</baseClassForTests>
+					<!-- We want to use the JAR with contracts with the following coordinates -->
+					<contractDependency>
+						<groupId>com.example</groupId>
+						<artifactId>2017-s1p-external-contracts</artifactId>
+					</contractDependency>
+					<!-- The JAR with contracts should be taken from Maven local -->
+					<contractsWorkOffline>true</contractsWorkOffline>
+					<contractsPath>/com/example/customer-rental-history/fraud-detection/rest</contractsPath>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

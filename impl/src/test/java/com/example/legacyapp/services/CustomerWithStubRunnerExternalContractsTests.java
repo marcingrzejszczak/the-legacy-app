@@ -22,7 +22,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TheLegacyApp.class,
-		properties = "stripe.url=http://localhost:9765",
+		properties = "api.url=http://localhost:9765",
 		webEnvironment = NONE)
 @AutoConfigureStubRunner(
 		ids = "com.example:custom-rental-history:+:stubs:9765"

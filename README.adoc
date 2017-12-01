@@ -34,6 +34,7 @@ and reinforce what M is doing.
 want to verify the integrations
 * how can we do that?
 * who knows WireMock?
+* what is a stub?
 - In `stubs`
 * we add `spring-cloud-contract-maven-plugin` section
 * we add the `<skipTests>true</skipTests>` cause we don't want to run tests
@@ -47,6 +48,14 @@ got created
 * we add `spring-cloud-starter-contract-stubrunner`
 * we write a test that uses `@AutoConfigureStubRunner` and works offline to download stubs
 * we assert that the response contains 25 results
+
+==== Generating tests against the real API
+
+A asks a question, what good is my stub if it wasn't tested
+against the real API.
+
+TODO: Show explicit mode, generate tests against the
+real API
 
 ==== The Legacy Summary
 
@@ -64,7 +73,7 @@ generate stubs because we don’t own the production code those stubs will be re
 
 === External contracts
 
-=== External contracts introduction
+==== External contracts introduction
 
 A then asks where the producer test should live.
 A says he is good friends with the developers of the bad API
@@ -90,7 +99,7 @@ structure
 * under that folder it's good practice for each consumer to their own subfolder
 * we don't want to run tests here (that's why we skip them)
 
-=== External contracts coding
+==== External contracts coding
 
 Time for action:
 
@@ -101,7 +110,7 @@ to point to these stubs
 - we've proven that we can run tests locally against the stubs from the contract
 - we `cd` back to root and do `./mvnw clean install` - we show the JAR with all contracts
 
-=== External contracts summary
+==== External contracts summary
 
 At the end of the session
 
@@ -113,4 +122,34 @@ team will start doing contract testing
 - Now, all teams can store contracts in that repository and collaborate
 - We're ready to make `the legacy application` test its own API
 
-=== External contracts
+=== Contracts for legacy app
+
+==== Contracts for legacy app introduction
+
+A realizes that he is just as bad as `CustomerRentalHistory` with his clients
+and now A wants to adopt SCC for his FraudDetectionService.
+
+- we setup SCC for FDS
+* to simplify the process we will store the contracts with the app
+- copy the contracts for the legacy app with `stubsPerConsumer` structure
+* let's assume that there are 2 clients `audit-service` and `insurance-service`
+* `audit` needs the `message` field
+* `insurance` needs the `message` & `ex27` fields
+
+M explains the idea
+
+A asks, can I delete `ex27` field? I don't remember if anybody uses it...
+A explains what consumer contracts are.
+
+=== Continuous Delivery
+
+What does this actually mean in the context of CD (SLIDES TIME)
+- Can you safely delete a field in your API?
+- Have my consumers changed and break me?
+- Are my API changes backward compatible?
+
+=== Microservices (slides)
+
+- Recapping what we've learned
+- Consumer Driven Contracts (A's previous presentation)
+- NodeJS
