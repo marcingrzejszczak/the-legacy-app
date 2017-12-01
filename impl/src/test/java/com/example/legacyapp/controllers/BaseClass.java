@@ -15,7 +15,16 @@ public class BaseClass {
 
 	@Before
 	public void setup() {
-		FraudDetectionImplBaseController controller = new FraudDetectionImplBaseController();
+
+	}
+}
+
+
+
+
+/*
+
+	FraudDetectionImplBaseController controller = new FraudDetectionImplBaseController();
 		controller.manager = new CustomerRentalHistoryManager() {
 			@Override public Charges listAllCharges(String name) {
 				if (name.equals("I_AM_FRAUD")) {
@@ -25,5 +34,5 @@ public class BaseClass {
 			}
 		};
 		RestAssuredMockMvc.standaloneSetup(controller);
-	}
-}
+
+ */

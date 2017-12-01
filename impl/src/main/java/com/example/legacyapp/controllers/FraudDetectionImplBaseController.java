@@ -38,11 +38,13 @@ public class FraudDetectionImplBaseController {
 		if (charges.isEmpty()) {
 			return ResponseEntity
 					.accepted()
-					.body(new FraudResponse("You're not a fraud", UUID.randomUUID().toString()));
+					.body(new FraudResponse("You're not a fraud",
+							UUID.randomUUID().toString()));
 		}
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
-				.body(new FraudResponse("Pay your debts first", UUID.randomUUID().toString()));
+				.body(new FraudResponse("Pay your debts first",
+						UUID.randomUUID().toString()));
 	}
 
 }
