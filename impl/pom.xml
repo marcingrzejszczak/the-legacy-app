@@ -89,6 +89,10 @@
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<version>1.2.1.RELEASE</version>
 				<extensions>true</extensions>
+				<!-- last steps where we want audit and insurance to pass -->
+				<configuration>
+					<baseClassForTests>com.example.legacyapp.controllers.BaseClass</baseClassForTests>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

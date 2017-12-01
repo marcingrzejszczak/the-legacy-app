@@ -54,8 +54,29 @@ got created
 A asks a question, what good is my stub if it wasn't tested
 against the real API.
 
-TODO: Show explicit mode, generate tests against the
-real API
+Ok, so, from the contracts let's generate the tests to see if the
+result is valid.
+
+Let's write some code!
+
+- Let's define in the plugin the `EXPLICIT` mode of tests. We want
+to send a real request
+- we need to change the contract cause Stripe generates the response
+data. Our json will not pass these validations. That's why in Sc-Contract
+we have the dynamic and static bits. For the test we will
+call an assertion function and for the stub side we will return
+a fixed value from the file
+* the value from the file can be updated just before the test
+* the value can be taken not from the file but from the external API
+* there are different ways, but for simplicity's sake we'll take it from the file
+- let's create a base class
+* we create the method `assertResponse(...)`
+* we set up the URI for the call
+* we set up basic authentication
+
+Now we can execute the build (debug from IDE)
+and we'll see that we've managed to connect to Stripe
+and assert the response.
 
 ==== The Legacy Summary
 

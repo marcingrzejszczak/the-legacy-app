@@ -7,7 +7,7 @@ import com.example.legacyapp.dto.Charges;
  * @author Marcin Grzejszczak
  */
 public class TheStub implements CustomerRentalHistoryManager {
-	@Override public Charges listAllCharges() {
+	@Override public Charges listAllCharges(String name) {
 		Charges charges = new Charges();
 		charges.getCharges().add(charge("a"));
 		charges.getCharges().add(charge("b"));

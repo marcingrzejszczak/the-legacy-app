@@ -2,7 +2,10 @@ package com.example.legacyapp.controllers;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.UUID;
 
+import com.example.legacyapp.dto.Charge;
 import com.example.legacyapp.dto.Charges;
 import com.example.legacyapp.services.CustomerRentalHistoryManager;
 import com.google.gson.Gson;
@@ -31,24 +34,22 @@ public class FraudDetectionImplBaseController {
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	ResponseEntity<FraudResponse> frauds(@PathVariable String name) {
 		// I smell NPE
-		if (manager.listAllCharges().getCharges().isEmpty()) {
+		List<Charge> charges = manager.listAllCharges(name).getCharges();
+		if (charges.isEmpty()) {
 			return ResponseEntity
 					.accepted()
-					.body(new FraudResponse(name + ", you're not a fraud"));
+					.body(new FraudResponse("You're not a fraud", UUID.randomUUID().toString()));
 		}
 		return ResponseEntity
 				.status(HttpStatus.BAD_REQUEST)
-				.body(new FraudResponse(name + ", pay your debts first"));
+				.body(new FraudResponse("Pay your debts first", UUID.randomUUID().toString()));
 	}
 
 }
 
 @Data
+@AllArgsConstructor
 class FraudResponse {
-	private String ex27;
 	private String message;
-
-	public FraudResponse(String message) {
-		this.message = message;
-	}
+	private String ex27;
 }

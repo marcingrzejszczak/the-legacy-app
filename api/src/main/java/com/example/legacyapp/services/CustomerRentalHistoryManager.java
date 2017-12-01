@@ -6,5 +6,5 @@ import com.example.legacyapp.dto.Charges;
  * @author Marcin Grzejszczak
  */
 public interface CustomerRentalHistoryManager {
-	Charges listAllCharges();
+	Charges listAllCharges(String name);
 }

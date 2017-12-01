@@ -28,7 +28,7 @@ public class CustomerRentalHistoryManagerImpl implements CustomerRentalHistoryMa
 	@Value("${api.url:}") String url;
 
 	@Override
-	public Charges listAllCharges() {
+	public Charges listAllCharges(String name) {
 		Stripe.apiKey = "sk_test_BQokikJOvBiI2HlWgH4olfQ2";
 		if (StringUtils.hasText(url)) {
 			Stripe.overrideApiBase(url);

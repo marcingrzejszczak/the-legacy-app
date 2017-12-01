@@ -34,7 +34,7 @@ public class CustomerWithStubRunnerTests {
 
 	@Test
 	public void should_return_charge_collection() {
-		Charges charges = manager.listAllCharges();
+		Charges charges = manager.listAllCharges("foo");
 
 		BDDAssertions.then(charges.getCharges())
 				.hasSize(25);

@@ -27,7 +27,7 @@ public class CustomerRentalHistoryManagerImplTests {
 
 	@Test
 	public void should_return_charge_collection() {
-		Charges charges = manager.listAllCharges();
+		Charges charges = manager.listAllCharges("foo");
 
 		BDDAssertions.then(charges.getCharges())
 				.extracting("customer")
