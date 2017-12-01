@@ -1,5 +1,6 @@
 package com.example.legacyapp.controllers;
 
+import com.example.legacyapp.dto.Charges;
 import com.example.legacyapp.services.CustomerRentalHistoryManager;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class CustomerRentalHistoryControllerImplBase {
 	// legacy API
 	@GetMapping(value = "/customer/rental/history/get",
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	ResponseEntity<String> collection() {
+	ResponseEntity<Charges> collection() {
 		return ResponseEntity
 				.ok(manager.listAllCharges());
 	}

@@ -2,9 +2,8 @@ package com.example.legacyapp.services;
 
 import java.util.Arrays;
 
-import com.google.gson.Gson;
-import com.stripe.model.Charge;
-import com.stripe.model.ChargeCollection;
+import com.example.legacyapp.dto.Charge;
+import com.example.legacyapp.dto.Charges;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Primary
 public class TheStub implements CustomerRentalHistoryManager {
-	@Override public String listAllCharges() {
-		ChargeCollection chargeCollection = new ChargeCollection();
-		chargeCollection.setData(
-				Arrays.asList(charge("a"),
-						charge("b"),
-						charge("c"))
-		);
-		return new Gson().toJson(chargeCollection);
+	@Override public Charges listAllCharges() {
+		Charges charges = new Charges();
+		charges.getCharges().add(charge("a"));
+		charges.getCharges().add(charge("b"));
+		charges.getCharges().add(charge("c"));
+		return charges;
 	}
 
 	Charge charge(String customer) {

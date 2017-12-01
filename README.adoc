@@ -5,3 +5,39 @@ that nobody loves. It has an anemic structure. We've left just
 one domain which is the `CustomerRentalHistory`. It will call this API
 https://stripe.com/docs/api/java#list_charges
 
+=== The script
+
+==== The Legacy App Introduction
+
+Set up a scenario. We have a problem with a legacy service. Let’s see how
+Spring Cloud Contract can solve this. The legacy app will be running in PWS
+fronting a mainframe, it offers many API’s one of which is the `CustomerRentalHistory`
+API returns JSON response containing lots of fields about the customer including
+their name / address / and how many rentals they have made in the past. For simplicity sake
+we're returning last 25 charges.
+
+A explains the legacy API (https://stripe.com/docs/api/java#list_charges)
+to M and talks through the kind of problems he has seen with
+the API & which fields he only cares about. `Amount`, `Captured`, `Customer`
+A provides a tour of the client side code which currently exists to call the
+CustomerRentalHistory service.
+
+==== The Legacy App Contract
+
+M steps in takes over the keyboard and show A how to write a contract
+test to generate a stub for the rental service A asks questions to clarify
+and reinforce what M is doing
+
+==== The Legacy Summary
+
+At the end of the session
+
+- A’s code base has an extra contract test in it
+- The maven plugin has been added to the project
+- The contract is in the client side code base
+* we create a submodule with `src/test/resources/contracts`
+* setup maven plugin to first generate tests (which will fail)
+* then we set the maven plugin NOT to generate tests, only
+generate stubs because we don’t own the production code those stubs will be reused in the stub runner tests
+- A test with StubRunner has been written and executed
+- The producer side test has not been executed at this point

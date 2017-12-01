@@ -1,6 +1,7 @@
 package com.example.legacyapp.controllers;
 
 import com.example.legacyapp.TheLegacyApp;
+import com.example.legacyapp.dto.Charges;
 import org.assertj.core.api.BDDAssertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +24,10 @@ public class CustomerRentalHistoryControllerImplBaseTests {
 
 	@Test
 	public void should_return_charge_collection() {
-		ResponseEntity<String> entity = base.collection();
+		ResponseEntity<Charges> entity = base.collection();
 
-		BDDAssertions.then(entity.getBody())
-				.contains("\"customer\":{\"id\":\"a\"}}")
-				.contains("\"customer\":{\"id\":\"b\"}}")
-				.contains("\"customer\":{\"id\":\"c\"}}");
+		BDDAssertions.then(entity.getBody().getCharges())
+				.extracting("customer")
+				.containsExactly("a", "b", "c");
 	}
 }

@@ -37,6 +37,11 @@
 			<artifactId>stripe-java</artifactId>
 			<version>5.24.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>the-legacy-app-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

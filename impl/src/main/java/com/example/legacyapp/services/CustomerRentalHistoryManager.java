@@ -1,10 +1,10 @@
 package com.example.legacyapp.services;
 
-import com.stripe.model.ChargeCollection;
+import com.example.legacyapp.dto.Charges;
 
 /**
  * @author Marcin Grzejszczak
  */
 public interface CustomerRentalHistoryManager {
-	String listAllCharges();
+	Charges listAllCharges();
 }
