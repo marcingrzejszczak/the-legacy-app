@@ -13,7 +13,9 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 import com.stripe.model.ChargeCollection;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * Everything has to be public due to wrong packaging
@@ -23,23 +25,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerRentalHistoryManagerImpl implements CustomerRentalHistoryManager {
 
+	@Value("${stripe.url:}") String url;
+
 	@Override
 	public Charges listAllCharges() {
 		Stripe.apiKey = "sk_test_BQokikJOvBiI2HlWgH4olfQ2";
+		if (StringUtils.hasText(url)) {
+			Stripe.overrideApiBase(url);
+		}
 		Map<String, Object> chargeParams = new HashMap<>();
 		chargeParams.put("limit", 25);
 		try {
-			ChargeCollection list = Charge.list(chargeParams);
-			com.example.legacyapp.dto.Charges charges = new Charges();
-			for (Charge charge : list.getData()) {
-				charges.getCharges().add(
-						new com.example.legacyapp.dto.Charge(charge.getCustomer(), charge.getAmount(), charge.getCaptured())
-				);
-			}
-			return charges;
+			return convertTheirChargesToOurs(chargeParams);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private Charges convertTheirChargesToOurs(Map<String, Object> chargeParams)
+			throws AuthenticationException, InvalidRequestException,
+			APIConnectionException, CardException, APIException {
+		ChargeCollection list = Charge.list(chargeParams);
+		Charges charges = new Charges();
+		for (Charge charge : list.getData()) {
+			charges.getCharges().add(
+					new com.example.legacyapp.dto.Charge(charge.getCustomer(), charge.getAmount(), charge.getCaptured())
+			);
+		}
+		return charges;
 	}
 }

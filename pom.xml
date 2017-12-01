@@ -18,6 +18,20 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<!-- We're adding the sc-contract plugin so as to create a stubbed response -->
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Edgware.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<modules>
 		<module>api</module>
 		<module>impl</module>
