@@ -1,0 +1,6 @@
+applications:
+- name: the-legacy-app
+  memory: 1024M
+  instances: 1
+  host: the-legacy-app
+  path: target/the-legacy-app-0.0.1.RELEASE.jar

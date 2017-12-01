@@ -1,0 +1,7 @@
+== The Legacy App
+
+This legacy app is a stereotypical monolith, with legacy code
+that nobody loves. It has an anemic structure. We've left just
+one domain which is the `CustomerRentalHistory`. It will call this API
+https://stripe.com/docs/api/java#list_charges
+
