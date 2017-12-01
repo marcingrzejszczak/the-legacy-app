@@ -1,18 +1,11 @@
 package com.example.legacyapp.services;
 
-import java.util.Arrays;
-
 import com.example.legacyapp.dto.Charge;
 import com.example.legacyapp.dto.Charges;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Marcin Grzejszczak
  */
-// automatically pollutes the context!
-@Component
-@Primary
 public class TheStub implements CustomerRentalHistoryManager {
 	@Override public Charges listAllCharges() {
 		Charges charges = new Charges();
