@@ -5,12 +5,14 @@ that nobody loves. It has an anemic structure. We've left just
 one domain which is the `CustomerRentalHistory`. It will call this API
 https://stripe.com/docs/api/java#list_charges
 
-=== The script
+== The script
+
+=== The Legacy App
 
 ==== The Legacy App Introduction
 
 Set up a scenario. We have a problem with a legacy service. Let’s see how
-Spring Cloud Contract can solve this. The legacy app will be running in PWS
+Spring Cloud Contract can solve this. The legacy app is the stripe.com API,
 fronting a mainframe, it offers many API’s one of which is the `CustomerRentalHistory`
 API returns JSON response containing lots of fields about the customer including
 their name / address / and how many rentals they have made in the past. For simplicity sake
@@ -20,7 +22,7 @@ A explains the legacy API (https://stripe.com/docs/api/java#list_charges)
 to M and talks through the kind of problems he has seen with
 the API & which fields he only cares about. `Amount`, `Captured`, `Customer`
 A provides a tour of the client side code which currently exists to call the
-CustomerRentalHistory service.
+`CustomerRentalHistory` service.
 
 ==== The Legacy App Contract
 
@@ -59,3 +61,56 @@ At the end of the session
 generate stubs because we don’t own the production code those stubs will be reused in the stub runner tests
 - A test with StubRunner has been written and executed
 - The producer side test has not been executed at this point
+
+=== External contracts
+
+=== External contracts introduction
+
+A then asks where the producer test should live.
+A says he is good friends with the developers of the bad API
+and A builds a pull request for A’s git repo which
+has the contracts in it and demonstrates how A can
+integrate the app into the tests. Explain that ones the
+contracts are validated against the producer then we're talking
+about *producer contracts*.
+
+M says how to move the contracts to an external repository
+it happens that we already have one prepared here:
+
+```
+$ git clone https://github.com/marcingrzejszczak/2017-s1p-external-contracts.git
+```
+
+M explains the structure:
+
+- contracts lay under `main` cause we need to build the JAR with contracts
+- explain the assembly plugin
+- each application has its own slash separated `groupid`/`artifactid` folder
+structure
+* under that folder it's good practice for each consumer to their own subfolder
+* we don't want to run tests here (that's why we skip them)
+
+=== External contracts coding
+
+Time for action:
+
+- we create the missing `src/main/resources/com/example/customer-rental-history` folder
+- we set up the `pom.xml` for `customer-rental-history` contracts (copy it from `done` folder)
+- we do `mvn clean install` to install the stubs locally and update the tests in the IDE
+to point to these stubs
+- we've proven that we can run tests locally against the stubs from the contract
+- we `cd` back to root and do `./mvnw clean install` - we show the JAR with all contracts
+
+=== External contracts summary
+
+At the end of the session
+
+- A separate, single repository with all the contracts got created
+- A’s code base no longer uses the contracts from the stub module
+cause the stubs come from the external repo
+* That will work only under the assumption that the `CustomerRentalHistory`
+team will start doing contract testing
+- Now, all teams can store contracts in that repository and collaborate
+- We're ready to make `the legacy application` test its own API
+
+=== External contracts

@@ -7,7 +7,7 @@ Contract.make {
 	request {
 		urlPath("/v1/charges") {
 			queryParameters {
-				parameter("limit", anyNumber())
+				parameter("limit", 25)
 			}
 		}
 		method GET()
