@@ -27,7 +27,7 @@ public class BaseClass {
 	FraudDetectionImplBaseController controller = new FraudDetectionImplBaseController();
 		controller.manager = new CustomerRentalHistoryManager() {
 			@Override public Charges listAllCharges(String name) {
-				if (name.equals("I_AM_FRAUD")) {
+				if (name.equals("CUSTOMER_A")) {
 					return new Charges(Collections.singletonList(new Charge()));
 				}
 				return new Charges();

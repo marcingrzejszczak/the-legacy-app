@@ -5,7 +5,7 @@ Contract.make {
 	should return a non fraud
 """
 	request {
-		url "/customer/NOT_FRAUD/get/fraud/get/"
+		url "/customer/CUSTOMER_B/get/fraud/get/"
 		method GET()
 	}
 	response {

@@ -5,7 +5,7 @@ Contract.make {
 	should return a fraud
 """
 	request {
-		url "/customer/I_AM_FRAUD/get/fraud/get/"
+		url "/customer/CUSTOMER_A/get/fraud/get/"
 		method GET()
 	}
 	response {
