@@ -36,6 +36,7 @@
 		<module>api</module>
 		<module>impl</module>
 		<module>stubs</module>
+		<module>stubs_with_proxy</module>
 	</modules>
 
 </project>

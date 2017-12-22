@@ -49,7 +49,9 @@ got created
 * we write a test that uses `@AutoConfigureStubRunner` and works offline to download stubs
 * we assert that the response contains 25 results
 
-==== Generating tests against the real API
+==== Generating tests against the real API (via DSL)
+
+_hint, pick this or explain proxying via WireMock_
 
 A asks a question, what good is my stub if it wasn't tested
 against the real API.
@@ -77,6 +79,18 @@ a fixed value from the file
 Now we can execute the build (debug from IDE)
 and we'll see that we've managed to connect to Stripe
 and assert the response.
+
+==== Generating tests against the real API (via WireMock)
+
+_hint, pick this or explain proxying via DSL_
+
+How can we generate stubs in the easiest way? So that they are validated and reusable?
+We can create a proxy via which we will send requests to the real app! Then from
+this proxy we will store all the stubs in our output directory.
+
+Thanks to the Maven `assembly` plugin, we can then package the stubs in a JAR
+in the structure that is understood by the Stub Runner. That way the captured
+responses from the real API can be reused offline in your company!
 
 ==== The Legacy Summary
 
