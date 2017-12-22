@@ -64,6 +64,12 @@
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>the-legacy-app-stubs-with-proxy</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<!-- For Spring Cloud Contract. This will work in the terminal,
 		not in Intellij due to classpath issues -->
 		<dependency>
