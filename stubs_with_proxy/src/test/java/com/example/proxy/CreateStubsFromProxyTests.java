@@ -1,16 +1,12 @@
 package com.example.proxy;
 
-import static org.assertj.core.api.BDDAssertions.then;
-
+import com.github.tomakehurst.wiremock.recording.RecordSpecBuilder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.tomakehurst.wiremock.recording.RecordSpecBuilder;
+import static org.assertj.core.api.BDDAssertions.then;
 
-@RunWith(SpringRunner.class)
 public class CreateStubsFromProxyTests extends AbstractStubsFromProxy {
 
 	@Override protected RecordSpecBuilder configure(RecordSpecBuilder builder) {
@@ -27,7 +23,9 @@ public class CreateStubsFromProxyTests extends AbstractStubsFromProxy {
 				.getForEntity("/v1/charges?limit=25", String.class);
 
 		then(response.getStatusCodeValue()).isEqualTo(200);
-		then(response.getBody()).isNotBlank();
+		then(response.getBody())
+				.isNotBlank()
+				.doesNotContain("<html>").as("The response must not be an HTML page");
 	}
 
 

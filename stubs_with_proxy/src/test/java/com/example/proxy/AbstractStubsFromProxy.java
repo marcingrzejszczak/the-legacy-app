@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -15,6 +16,7 @@ import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.cloud.contract.wiremock.WireMockSpring;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -28,6 +30,7 @@ import com.github.tomakehurst.wiremock.stubbing.StubMapping;
  *
  * @author Marcin Grzejszczak
  */
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = AbstractStubsFromProxy.Config.class)
 @AutoConfigureWireMock
 public abstract class AbstractStubsFromProxy {
