@@ -1,0 +1,4 @@
+stubrunner:
+  stubsMode: LOCAL
+  ids:
+  - com.example:the-legacy-app-stubs-with-proxy:+:stubs:8765
