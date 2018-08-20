@@ -56,7 +56,9 @@
 						<inherited>false</inherited>
 						<configuration>
 							<attach>true</attach>
-							<descriptor>${basedir}/src/assembly/stub.xml</descriptor>
+							<descriptors>
+								<descriptor>${project.basedir}/src/assembly/stub.xml</descriptor>
+							</descriptors>
 						</configuration>
 					</execution>
 				</executions>

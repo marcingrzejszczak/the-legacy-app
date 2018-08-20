@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,7 +25,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 		webEnvironment = NONE)
 @AutoConfigureStubRunner(
 		ids = "com.example.github:github-webhook:+:stubs:7654",
-		repositoryRoot = "http://repo.spring.io/libs-milestone-local"
+		repositoryRoot = "http://repo.spring.io/libs-milestone-local",
+		stubsMode = StubRunnerProperties.StubsMode.REMOTE
 )
 public class OnlineModeTests {
 

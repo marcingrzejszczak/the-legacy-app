@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -26,7 +27,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @AutoConfigureStubRunner(
 		ids = "com.example:the-legacy-app-stubs:+:stubs:8765"
 		// in Intellij you have to use workOffline
-		,		workOffline = true
+		,		stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
 public class CustomerWithStubRunnerTests {
 

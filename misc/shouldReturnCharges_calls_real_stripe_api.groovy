@@ -17,7 +17,7 @@ Contract.make {
 		method GET()
 	}
 	response {
-		status 200
+		status OK()
 		body($(consumer({ ->
 			String plainCreds = "sk_test_BQokikJOvBiI2HlWgH4olfQ2:"
 			byte[] plainCredsBytes = plainCreds.getBytes()

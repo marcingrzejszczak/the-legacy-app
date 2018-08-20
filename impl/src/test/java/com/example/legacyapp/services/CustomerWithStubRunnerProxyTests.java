@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -27,7 +28,7 @@ import com.example.legacyapp.dto.Charges;
 @AutoConfigureStubRunner(
 		ids = "com.example:the-legacy-app-stubs-with-proxy:+:stubs:6765"
 		// in Intellij you have to use workOffline
-		,		workOffline = true
+		,		stubsMode = StubRunnerProperties.StubsMode.LOCAL
 )
 public class CustomerWithStubRunnerProxyTests {
 
