@@ -40,7 +40,7 @@ want to verify the integrations
 * we add the `<skipTests>true</skipTests>` cause we don't want to run tests
 * we add the `starter-verifier` dependency
 * we write the first contract that returns the contents of the `charges.json`
-* when we do `./mvnw clean install -pl the-legacy-app-stubs` we will see that stubs
+* when we do `./mvnw clean install -pl com.example:the-legacy-app-stubs` we will see that stubs
 got created
 - In `impl`
 * we write a test that asserts that the response contains 25 results
