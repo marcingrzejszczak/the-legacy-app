@@ -31,7 +31,8 @@ import com.github.tomakehurst.wiremock.stubbing.StubMapping;
  * @author Marcin Grzejszczak
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = AbstractStubsFromProxy.Config.class)
+@SpringBootTest(classes = AbstractStubsFromProxy.Config.class,
+		webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureWireMock
 public abstract class AbstractStubsFromProxy {
 	@Rule public TestName testName = new TestName();
